@@ -1,6 +1,6 @@
-const  User = require ('../Entity/User.js')
-const bcrypt = require ('bcryptjs')
-module.exports = function Register (req,res){
+import bcrypt from 'bcryptjs'
+    import User from '../Entity/User.js'
+export function Register (req,res){
 User.findOne({ email: req.body.email }).then(user => {
     if (user) {
         return res.status(400).json({ email: "Email already exists" });
@@ -24,7 +24,7 @@ User.findOne({ email: req.body.email }).then(user => {
     }
 });
 }
-module.exports = function Login(req , res){
+export function Login(req , res){
     const email = req.body.email;
     const password = req.body.password;
 
