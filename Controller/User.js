@@ -1,12 +1,15 @@
 import bcrypt from 'bcryptjs'
-    import User from '../Entity/User.js'
+import User from '../Entity/User.js'
+import jwt from 'jsonwebtoken'
+
+const secret_key = "boom";
 export function Register (req,res){
 User.findOne({ email: req.body.email }).then(user => {
     if (user) {
         return res.status(400).json({ email: "Email already exists" });
     } else {
         const newUser = new User({
-            fullName: req.body.fullName,
+            username: req.body.username,
             email: req.body.email,
             password: req.body.password
         });
@@ -32,18 +35,33 @@ export function Login(req , res){
     User.findOne({ email }).then(user => {
         // Check if user exists
         if (!user) {
-            return res.status(404).json({ emailnotfound: "Email not found" });
+            return res.status(404).json({   message: "Email is not Registered Please SignUp",
+                status: res.statusCode,
+                token: ''});
         }
 
         // Check password
         bcrypt.compare(password, user.password).then(isMatch => {
             if (isMatch) {
-               res.status(200).json(user)
+                const userDetail= {
+                    username : user.username,
+                    id : user._id
+                }
+                const token = jwt.sign(userDetail,secret_key, {
+                    expiresIn: "60s",
+                });
+               res.status(200).json({
+                   message: "Logged In successfully",
+                   status: res.statusCode,
+                   token
+               })
             }
              else {
                 return res
                     .status(400)
-                    .json({ passwordincorrect: "Password incorrect" });
+                    .json({ message: "Invalid Crendential given",
+                        status: res.statusCode,
+                        token: ''});
             }
         });
     });
