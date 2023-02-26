@@ -19,9 +19,9 @@ User.findOne({ email: req.body.email }).then(user => {
             bcrypt.hash(newUser.password, salt, (err, hash) => {
                 newUser.password = hash;
                 newUser
-                    .save()
-                    .then(user => res.json(user))
-                    .catch(err => console.log(err));
+                        .save()
+                        .then(user => res.json(user))
+                        .catch(err => console.log(err));
             });
         });
     }
