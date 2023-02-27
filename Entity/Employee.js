@@ -7,31 +7,37 @@ const EmployeeSchema = new Schema({
     password :{
         type:String,
     },
-    nom :{
+    first_name :{
         type:String,
     },
-    prenom :{
+    last_name :{
         type:String,
     },
-    age :{
-        type:Number,
-    },
-    job :{
+    job_title :{
         type:String,
     },
-    salary :{
-        type:Number,
-    },
-    entrepriseName :{
-        type:String,
-    },
-    hoursVacation :{
-        type:Number,
-    },
-    hoursSick :{
-        type:Number,
+    departement_id: {
+      type: Schema.Types.ObjectId,
     },
     resetCode :{
+        type:String,
+    },
+    address :{
+        type:String,
+    },
+    city :{
+        type:String,
+    },
+    state :{
+        type:String,
+    },
+    country :{
+        type:String,
+    },
+    hire_date :{
+        type:Date,
+    },
+    phone :{
         type:String,
     }
 })
