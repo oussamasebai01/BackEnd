@@ -39,6 +39,15 @@ const EmployeeSchema = new Schema({
     },
     phone :{
         type:String,
+    },
+    salary :{
+        type:Number,
+    },
+    vacation :{
+        type:Number,
+    },
+    sick :{
+        type:Number,
     }
 })
 export default model ('Employee',EmployeeSchema)

@@ -4,6 +4,7 @@ import morgan from 'morgan'; // Importer morgan
 import cors from 'cors'; // Importer cors
 import userRoutes from './Routes/User.js';
 import employeeRoutes from './Routes/Epmloyee.js'
+import congeeRoutes from './Routes/Congee.js'
 
 
 const port = process.env.PORT || 9091;
@@ -26,6 +27,7 @@ app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use('/user', userRoutes);
 app.use('/employee',employeeRoutes);
+app.use('/congee',congeeRoutes)
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}/`);
 });
