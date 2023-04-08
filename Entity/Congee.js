@@ -21,8 +21,8 @@ const CongeeSchema = new Schema({
     },
     etat:{
         type:String,
-        enum:["valide","non valide","en coure"],
-        default:"en coure"
+        enum:["valide","non valide","en cours"],
+        default:"en cours"
     }
 })
 export default model ('Congee',CongeeSchema)

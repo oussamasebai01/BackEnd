@@ -25,6 +25,7 @@ export function Login(req , res){
                     return res.status(404).json(null)
                     else
                     return res.status(200).json({
+                        _id:emp._id,
                         nom:emp.first_name,
                         prenom:emp.last_name,
                         salary:emp.salary,
@@ -35,7 +36,7 @@ export function Login(req , res){
                     })
                 })
             }
-            else {
+            else { 
                 return res
                     .status(400)
                     .json({ message: "Invalid password",
